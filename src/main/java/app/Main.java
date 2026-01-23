@@ -3,6 +3,9 @@ package app;
 import model.Arquiteto;
 import model.Cliente;
 import model.Projeto;
+import repository.Conexao;
+
+import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,5 +19,17 @@ public class Main {
                 casaDePraia.getCliente().getNome() + " e está na fase de " + casaDePraia.getFaseDoProjeto() +
                 " e está sob supervisão do arquiteto " + casaDePraia.getArquitetoResponsavel().getNome() +
                 " com o CAU n: " + casaDePraia.getArquitetoResponsavel().getCAU());
+
+        Connection conn = Conexao.conectar();
+
+        if(conn != null){
+            System.out.println("Banco de Dados Postgresql conectado com sucesso!!");
+            Conexao.fecharConexao(conn);
+            System.out.println("Conexão Fechada");
+        }else{
+            System.out.println("Falha na Conexao, verifique o console de erros!!");
+        }
+
+
     }
 }
