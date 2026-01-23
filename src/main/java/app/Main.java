@@ -6,8 +6,10 @@ import model.Projeto;
 import repository.ArquitetoDAO;
 import repository.ClienteDAO;
 import repository.Conexao;
+import repository.ProjetoDAO;
 
 import java.sql.Connection;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,13 +25,23 @@ public class Main {
         Cliente juliaComId = ClienteDAO.buscarPorCpf(julia.getCpf());
         Cliente carlosComId = ClienteDAO.buscarPorCpf(carlos.getCpf());
 
-        System.out.println("O ID do Arquiteto " + luizComId.getNome() + " é: " + luizComId.getId());
-        System.out.println("O ID do Cliente " + juliaComId.getNome() + " é: " + juliaComId.getId());
-        System.out.println("O ID do Cliente " + carlosComId.getNome() + " é: " + carlosComId.getId());
+        Projeto casaDePraia = new Projeto("Casa de Praia buzios", "Rua do Anjos, Buzios - RJ",
+                "Estudo Preliminar", luizComId, juliaComId);
+        Projeto reformaApartamento = new Projeto("Reforma Apartamento",
+                "Rua da usina, 590, Bangu - RJ",
+                "Anteprojeto", luizComId, carlosComId);
 
 //        ArquitetoDAO.salvar(luiz);
 //        ClienteDAO.salvar(julia);
 //        ClienteDAO.salvar(carlos);
+//        ProjetoDAO.salvar(casaDePraia);
+//        ProjetoDAO.salvar(reformaApartamento);
+
+        List<Projeto> projetos = ProjetoDAO.listarTodos();
+        System.out.println("==== LISTA DO PROJETOS ====");
+        for(Projeto p : projetos){
+            System.out.println(p);
+        }
 
     }
 }

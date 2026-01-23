@@ -16,6 +16,15 @@ public class Projeto {
         this.cliente = cliente;
     }
 
+    public Projeto(int id, String nomeProjeto, String enderecoProjeto, String faseDoProjeto, Arquiteto arquitetoResponsavel, Cliente cliente) {
+        this.id = id;
+        this.nomeProjeto = nomeProjeto;
+        this.enderecoProjeto = enderecoProjeto;
+        this.faseDoProjeto = faseDoProjeto;
+        this.arquitetoResponsavel = arquitetoResponsavel;
+        this.cliente = cliente;
+    }
+
     public String getNomeProjeto() {
         return nomeProjeto;
     }
@@ -62,5 +71,16 @@ public class Projeto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "\n--- Projeto ---" +
+                "\nID: " + this.getId() +
+                "\nNome: " + nomeProjeto +
+                "\nFase: " + faseDoProjeto +
+                "\nArquiteto: " + arquitetoResponsavel.getNome() +
+                "\nCliente: " + cliente.getNome() +
+                "\n----------------";
     }
 }

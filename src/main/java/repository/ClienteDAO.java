@@ -60,4 +60,31 @@ public class ClienteDAO {
         }
         return null;
     }
+
+    public Cliente buscarPorId(int id){
+        String sql = "SELECT * FROM clientes WHERE id = ?";
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            try{
+                ResultSet rs = stmt.executeQuery();
+
+                if(rs.next()){
+                    return new Cliente(
+                            rs.getInt("id"),
+                            rs.getString("nome"),
+                            rs.getString("email"),
+                            rs.getString("cpf"),
+                            rs.getString("telefone_contato")
+                    );
+                }
+            }catch (SQLException e){
+                System.err.println("Erro ao buscar ID: " + e.getMessage());
+            }
+        }catch (SQLException e){
+            System.err.println("Erro ao buscar ID: " + e.getMessage());
+        }
+        return null;
+    }
 }
