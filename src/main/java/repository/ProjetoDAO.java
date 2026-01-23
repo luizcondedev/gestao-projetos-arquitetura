@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjetoDAO {
-    public static void salvar(Projeto projeto){
+    public void salvar(Projeto projeto){
         String sql = "INSERT INTO projetos (nome_projeto, endereco_projeto, fase_projeto, arquiteto_id, cliente_id) " +
                 "VALUES (?,?,?,?,?)";
 
@@ -34,7 +34,7 @@ public class ProjetoDAO {
         }
     }
 
-    public static List<Projeto> listarTodos(){
+    public List<Projeto> listarTodos(){
         List<Projeto> projetos = new ArrayList<>();
         String sql = "SELECT * FROM projetos";
 

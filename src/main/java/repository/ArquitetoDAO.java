@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class ArquitetoDAO {
 
-    public static void salvar(Arquiteto arquiteto){
+    public void salvar(Arquiteto arquiteto){
         String insertSQL = "INSERT INTO arquitetos(nome, email, cpf, cau) VALUES (?,?,?,?)";
 
         try{
@@ -34,7 +34,7 @@ public class ArquitetoDAO {
         }
     }
 
-    public static Arquiteto buscarPorCpf(String cpf){
+    public Arquiteto buscarPorCpf(String cpf){
         String sql = "SELECT * FROM arquitetos WHERE cpf = ?";
 
         try{

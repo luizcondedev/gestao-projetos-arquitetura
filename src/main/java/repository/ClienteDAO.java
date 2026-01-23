@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class ClienteDAO {
 
-    public static void salvar(Cliente cliente){
+    public void salvar(Cliente cliente){
         String insertSQL = "INSERT INTO clientes(nome, email, cpf, telefone_contato) VALUES (?,?,?,?);";
 
         try{
@@ -32,7 +32,7 @@ public class ClienteDAO {
         }
     }
 
-    public static Cliente buscarPorCpf(String cpf){
+    public Cliente buscarPorCpf(String cpf){
         String sql = "SELECT * FROM clientes WHERE cpf = ?";
 
         try{
