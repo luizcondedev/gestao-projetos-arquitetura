@@ -8,6 +8,11 @@ public class Cliente extends Pessoa{
         this.telefoneContato = telefoneContato;
     }
 
+    public Cliente(int id, String nome, String email, String cpf, String telefoneContato) {
+        super(id, nome, email, cpf);
+        this.telefoneContato = telefoneContato;
+    }
+
     public String getTelefoneContato(){
         return telefoneContato;
     }

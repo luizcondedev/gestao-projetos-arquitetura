@@ -8,6 +8,11 @@ public class Arquiteto extends Pessoa{
         this.CAU = CAU;
     }
 
+    public Arquiteto(int id, String nome, String email, String cpf, String CAU) {
+        super(id, nome, email, cpf);
+        this.CAU = CAU;
+    }
+
     public String getCAU() {
         return CAU;
     }
@@ -15,4 +20,6 @@ public class Arquiteto extends Pessoa{
     public void setCAU(String CAU) {
         this.CAU = CAU;
     }
+
+
 }

@@ -1,41 +1,39 @@
 package repository;
 
 import model.Arquiteto;
+import model.Cliente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ArquitetoDAO {
+public class ClienteDAO {
 
-    public static void salvar(Arquiteto arquiteto){
-        String insertSQL = "INSERT INTO arquitetos(nome, email, cpf, cau) VALUES (?,?,?,?)";
+    public static void salvar(Cliente cliente){
+        String insertSQL = "INSERT INTO clientes(nome, email, cpf, telefone_contato) VALUES (?,?,?,?);";
 
         try{
-            //Abrindo Conexao com o Banco de dados
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = conn.prepareStatement(insertSQL);
 
-            //Preenchendo as lacunas "?" com o PreparedStatement
-            stmt.setString(1, arquiteto.getNome());
-            stmt.setString(2, arquiteto.getEmail());
-            stmt.setString(3, arquiteto.getCpf());
-            stmt.setString(4, arquiteto.getCAU());
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getEmail());
+            stmt.setString(3, cliente.getCpf());
+            stmt.setString(4, cliente.getTelefoneContato());
 
-            //Executando a query SQL
             stmt.executeUpdate();
 
-            System.out.println("Arquiteto salvo com sucesso!");
+            System.out.println("Cliente salvo com sucesso!");
             Conexao.fecharConexao(conn);
             System.out.println("Encerrando Conexão com o Banco");
-        }catch(SQLException e){
-            System.err.println("Erro ao salvar arquiteto: " + e.getMessage());
+        }catch (SQLException e){
+            System.err.println("Erro ao salvar cliente: " + e.getMessage());
         }
     }
 
-    public static Arquiteto buscarPorCpf(String cpf){
-        String sql = "SELECT * FROM arquitetos WHERE cpf = ?";
+    public static Cliente buscarPorCpf(String cpf){
+        String sql = "SELECT * FROM clientes WHERE cpf = ?";
 
         try{
             Connection conn = Conexao.conectar();
@@ -46,19 +44,19 @@ public class ArquitetoDAO {
                 ResultSet rs = stmt.executeQuery();
                 if(rs.next()){
                     //Criação de um Arquiteto com ID
-                    return new Arquiteto(
+                    return new Cliente(
                             rs.getInt("id"),
                             rs.getString("nome"),
                             rs.getString("email"),
                             rs.getString("cpf"),
-                            rs.getString("cau")
+                            rs.getString("telefone_contato")
                     );
                 }
             }catch (SQLException e){
-                System.err.println("Erro ao buscar arquiteto: " + e.getMessage());
+                System.err.println("Erro ao buscar Cliente: " + e.getMessage());
             }
         }catch (SQLException e){
-            System.err.println("Erro ao buscar arquiteto: " + e.getMessage());
+            System.err.println("Erro ao buscar Cliente: " + e.getMessage());
         }
         return null;
     }
